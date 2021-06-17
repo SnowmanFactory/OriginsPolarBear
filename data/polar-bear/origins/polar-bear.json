@@ -1,0 +1,14 @@
+{
+  "powers": [
+    "polar-bear:fish-diet",
+    "polar-bear:heat-exhaustion",
+    "polar-bear:quickened-cold",
+    "polar-bear:pack-animal",
+    "polar-bear:igloo-spawn"
+  ],
+  "icon": "minecraft:salmon",
+  "order": 4,
+  "impact": 2,
+  "name": "Polar Bear",
+  "description": "You are of the Polar Bear linage"
+}
