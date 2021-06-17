@@ -1,0 +1,65 @@
+{
+  "type": "origins:multiple",
+  "name": "Cold Fighter",
+  "description": "You are a used to movement in your natural habitat so you will move faster and hit harder",
+  "walk-speed": {
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+      "attribute": "minecraft:generic.movement_speed",
+      "operation": "addition",
+      "value": 0.025
+    },
+    "tick_rate": 5,
+    "condition": {
+      "type": "origins:biome",
+      "condition": {
+        "type": "origins:temperature",
+        "comparison": "<",
+        "compare_to": 0.15
+      }
+    }
+  },
+  "swim-speed": {
+    "type": "origins:modify_swim_speed",
+    "modifier": {
+      "operation": "addition",
+      "value": 0.025
+    },
+    "condition": {
+      "type": "origins:biome",
+      "condition": {
+        "type": "origins:temperature",
+        "comparison": "<",
+        "compare_to": 0.15
+      }
+    }
+  },
+  "more-damage": {
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+      "attribute": "minecraft:generic.attack_damage",
+      "operation": "addition",
+      "value": 3
+    },
+    "tick_rate": 5,
+    "condition": {
+      "type": "origins:biome",
+      "condition": {
+        "type": "origins:temperature",
+        "comparison": "<",
+        "compare_to": 0.15
+      }
+    }
+  },
+  "roar": {
+    "type": "origins:active_self",
+    "entity_action": {
+      "type": "origins:play_sound",
+      "sound": "minecraft:entity.polar_bear.warning"
+    },
+    "cooldown": 10,
+    "hud_render": {
+      "should_render": false
+    }
+  }
+}

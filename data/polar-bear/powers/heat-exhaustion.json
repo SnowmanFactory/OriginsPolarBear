@@ -3,23 +3,106 @@
   "name": "Heat Exhaustion",
   "description": "You are used to a cold climate, so when you are in a warm climate you will be weaker and exhaust faster",
   "weakness": {
-    "type": "origins:stacking_status_effect",
-    "min_stacks": -60,
-    "max_stacks": 600,
-    "duration_per_stack": 10,
-    "effect": {
-      "effect": "minecraft:weakness",
-      "is_ambient": true,
-      "show_particles": false,
-      "show_icon": false
+    "name": "thing",
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+      "attribute": "minecraft:generic.attack_damage",
+      "operation": "addition",
+      "value": -4
+    },
+    "tick_rate": 5,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "polar-bear:heat-exhaustion_heat-bar",
+      "comparison": "==",
+      "compare_to": 600
+    }
+  },
+  "attack-speed-reduction": {
+    "name": "thing",
+    "type": "origins:conditioned_attribute",
+    "modifier": {
+      "attribute": "minecraft:generic.attack_speed",
+      "operation": "multiply_total",
+      "value": -0.5
+    },
+    "tick_rate": 5,
+    "condition": {
+      "type": "origins:resource",
+      "resource": "polar-bear:heat-exhaustion_heat-bar",
+      "comparison": "==",
+      "compare_to": 600
+    }
+  },
+  "heat-bar": {
+    "type": "origins:resource",
+    "min": 0,
+    "max": 600,
+    "hud_render": {
+      "bar_index": 7,
+      "condition": {
+        "type": "origins:resource",
+        "resource": "polar-bear:heat-exhaustion_heat-bar",
+        "comparison": ">",
+        "compare_to": 0
+      }
+    }
+  },
+  "bar-controller": {
+    "type": "origins:action_over_time",
+    "interval": 1,
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "polar-bear:heat-exhaustion_heat-bar",
+      "change": 1
     },
     "condition": {
-      "type": "origins:biome",
-      "condition": {
-        "type": "origins:temperature",
-        "comparison": ">=",
-        "compare_to": 2
-      }
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:biome",
+          "condition": {
+            "type": "origins:temperature",
+            "comparison": ">=",
+            "compare_to": 2
+          }
+        },
+        {
+          "type": "origins:resource",
+          "resource": "polar-bear:heat-exhaustion_heat-bar",
+          "comparison": "<",
+          "compare_to": 600
+        }
+      ]
+    }
+  },
+  "bar-reset": {
+    "type": "origins:action_over_time",
+    "interval": 10,
+    "entity_action": {
+      "type": "origins:change_resource",
+      "resource": "polar-bear:heat-exhaustion_heat-bar",
+      "change": -600
+    },
+    "condition": {
+      "type": "origins:and",
+      "conditions": [
+        {
+          "type": "origins:biome",
+          "condition": {
+            "type": "origins:temperature",
+            "comparison": ">=",
+            "compare_to": 2
+          },
+          "inverted": true
+        },
+        {
+          "type": "origins:resource",
+          "resource": "polar-bear:heat-exhaustion_heat-bar",
+          "comparison": "!=",
+          "compare_to": 0
+        }
+      ]
     }
   },
   "hungry": {

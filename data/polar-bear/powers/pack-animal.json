@@ -1,17 +1,13 @@
 {
-  "type": "origins:action_over_time",
   "name": "Pack Animal",
   "description": "Your pack mentality gives you strength when you are near other players",
-  "entity_action": {
-    "type": "origins:apply_effect",
-    "effect": {
-      "effect": "minecraft:strength",
-      "duration": 200,
-      "is_ambient": true,
-      "show_particles": false
-    }
+  "type": "origins:conditioned_attribute",
+  "modifier": {
+    "attribute": "minecraft:generic.attack_damage",
+    "operation": "addition",
+    "value": 3
   },
-  "interval": 5,
+  "tick_rate": 5,
   "condition": {
     "type": "origins:command",
     "command": "execute if entity @a[distance=0.000001..10]",

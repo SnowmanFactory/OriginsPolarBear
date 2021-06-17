@@ -50,10 +50,7 @@
           "inverted": true
         },
         {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "tag": "origins:ignore_diet"
-          }
+          "type": "origins:food"
         }
       ]
     }
@@ -61,53 +58,15 @@
   "better-fish": {
     "type": "origins:modify_food",
     "item_condition": {
-      "type": "origins:and",
-      "conditions": [
-        {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "item": "minecraft:cod"
-          }
-        },
-        {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "item": "minecraft:cooked_cod"
-          }
-        },
-        {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "item": "minecraft:salmon"
-          }
-        },
-        {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "item": "minecraft:cooked_salmon"
-          }
-        },
-        {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "item": "minecraft:pufferfish"
-          }
-        },
-        {
-          "type": "origins:ingredient",
-          "ingredient": {
-            "item": "minecraft:tropical_fish"
-          }
-        }
-      ]
+      "type": "origins:food"
     },
     "food_modifier": {
-      "operation": "multiply_base",
+      "operation": "addition",
       "value": 2.0
     },
     "saturation_modifier": {
-      "operation": "multiply_base",
-      "value": 2.0
+      "operation": "addition",
+      "value": 3.2
     }
   }
 }
