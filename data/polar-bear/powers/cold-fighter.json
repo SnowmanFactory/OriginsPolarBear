@@ -35,20 +35,81 @@
     }
   },
   "more-damage": {
-    "type": "origins:conditioned_attribute",
-    "modifier": {
-      "attribute": "minecraft:generic.attack_damage",
-      "operation": "addition",
-      "value": 3
-    },
-    "tick_rate": 5,
-    "condition": {
-      "type": "origins:biome",
-      "condition": {
-        "type": "origins:temperature",
-        "comparison": "<",
-        "compare_to": 0.15
-      }
+    "type": "origins:action_over_time",
+    "interval": 20,
+    "entity_action": {
+      "type": "origins:if_else_list",
+      "actions": [
+        {
+          "condition": {
+            "type": "origins:and",
+            "conditions": [
+              {
+                "type": "origins:command",
+                "command": "execute if entity @a[distance=0.000001..10]",
+                "comparison": "==",
+                "compare_to": 1.5
+              },
+              {
+                "type": "origins:status_effect",
+                "effect": "minecraft:speed",
+                "inverted": true
+              }
+            ]
+          },
+          "action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:strength",
+              "amplifier": 1,
+              "duration": 25,
+              "is_ambient": true,
+              "show_particles": false,
+              "show_icon": false
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "origins:biome",
+            "condition": {
+              "type": "origins:temperature",
+              "comparison": "<",
+              "compare_to": 0.15
+            }
+          },
+          "action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:strength",
+              "amplifier": 0,
+              "duration": 25,
+              "is_ambient": true,
+              "show_particles": false,
+              "show_icon": false
+            }
+          }
+        },
+        {
+          "condition": {
+            "type": "origins:command",
+            "command": "execute if entity @a[distance=0.000001..10]",
+            "comparison": "==",
+            "compare_to": 1.5
+          },
+          "action": {
+            "type": "origins:apply_effect",
+            "effect": {
+              "effect": "minecraft:strength",
+              "amplifier": 0,
+              "duration": 25,
+              "is_ambient": true,
+              "show_particles": false,
+              "show_icon": false
+            }
+          }
+        }
+      ]
     }
   },
   "roar": {
